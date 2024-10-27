@@ -8,20 +8,20 @@ function validInteger(value) {
   return /^[0-9]+$/.test(trimmedValue) && Number(trimmedValue) >= 0;
 }
 
-// Checks and returns a valid priority level, defaulting to 'LOW' if invalid
+/// Checks and returns a valid priority level, defaulting to 'LOW' if invalid
 const validatePriority = priority => [1, 3, 5, 7].includes(Number(priority)) ? Number(priority) : PRIORITY["LOW"]
 
 // Returns the current date and time in "DD/MM/YYYY HH:MM:SS" format
 const todaysDate = () => {
   const today = new Date();
-
-  // Manually format each date component without using a helper function
-  const day = today.getDate() < 10 ? `0${today.getDate()}` : today.getDate();
-  const month = (today.getMonth() + 1) < 10 ? `0${today.getMonth() + 1}` : today.getMonth() + 1;
+  const formatNumber = num => (num < 10 ? `0${num}` : num);
+  
+  const day = formatNumber(today.getDate());
+  const month = formatNumber(today.getMonth() + 1);
   const year = today.getFullYear();
-  const hours = today.getHours() < 10 ? `0${today.getHours()}` : today.getHours();
-  const minutes = today.getMinutes() < 10 ? `0${today.getMinutes()}` : today.getMinutes();
-  const seconds = today.getSeconds() < 10 ? `0${today.getSeconds()}` : today.getSeconds();
+  const hours = formatNumber(today.getHours());
+  const minutes = formatNumber(today.getMinutes());
+  const seconds = formatNumber(today.getSeconds());
 
   return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
 };
